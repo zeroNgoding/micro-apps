@@ -13,16 +13,22 @@ export default function Navbar() {
         </div>
 
         <ul className="flex gap-4 font-semibold">
-          <li className="cursor-pointer">Partai</li>
+          <li>
+            <a href="">Partai</a>
+          </li>
           <li>|</li>
-          <li className="cursor-pointer">Paslon</li>
+          <li>
+            <a href="">Paslon</a>
+          </li>
           <li>|</li>
-          <li className="cursor-pointer">Voting</li>
+          <li>
+            <a href="">Voting</a>
+          </li>
           <li>
             {isLogin ? (
               <>
                 <button
-                  onClick={() => setIsLogin(!isLogin)}
+                  onClick={(): void => setIsLogin(!isLogin)}
                   className="bg-white text-black rounded-full px-2 py-1"
                 >
                   D
@@ -31,7 +37,7 @@ export default function Navbar() {
             ) : (
               <>
                 <button
-                  onClick={() => setIsLogin(!isLogin)}
+                  onClick={(): void => setIsLogin(!isLogin)}
                   className="bg-white text-black rounded px-4 ms-5 py-1"
                 >
                   Login
