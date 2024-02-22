@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "../assets/img/logoDW.png";
 
 export default function Navbar() {
