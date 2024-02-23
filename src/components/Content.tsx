@@ -2,81 +2,81 @@ import Image from "../assets/img/image.png";
 
 export default function Content() {
   return (
-    <>
-      <div className="container mx-auto grid grid-cols-3 gap-4 my-24">
-        <div
-          className="col-span-2 relative h-full bg-no-repeat bg-cover"
-          style={{ backgroundImage: `url(${Image})` }}
-        >
-          <div>
-            <span className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg absolute bottom-20 left-8">
+    <section className="py-16">
+      <div className="container mx-auto">
+        <div className="w-full px-4 grid grid-cols-3 gap-4">
+          <div className="relative  col-span-3 lg:col-span-2 lg:h-[470px]">
+            <img
+              src={Image}
+              className="lg:w-full lg:h-full object-cover"
+              alt=""
+            />
+            <span className="font-semibold text-white text-sm lg:text-3xl bg-red-600 p-2 rounded-lg absolute bottom-14 left-4 lg:bottom-24">
               SENIN, 03 JAN 2023
             </span>
-            <span className="text-3xl font-bold text-white absolute bottom-10 left-8">
+            <span className=" font-bold lg:text-4xl text-white absolute bottom-7 lg:bottom-12 left-4">
               <a href="">KPU TETAPKAN 3 MENTOR TERBAIK</a>
             </span>
-            <span className="absolute bottom-4 text-white left-8 text-lg text-slate-200 font-medium">
+            <span className="absolute bottom-3 lg:bottom-6 lg:text-xl text-sm text-white left-4 text-lg text-slate-200 font-medium">
               Super Admin
             </span>
           </div>
-        </div>
-        <div className="bg-white text-black">
-          <div>
-            <img src={Image} className="w-full" alt="" />
+
+          {/* display mobile */}
+          <div className="lg:hidden col-span-3">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="bg-white text-black">
+                <div>
+                  <img src={Image} className="w-full" alt="" />
+                </div>
+                <div className="p-2 md:pt-5">
+                  <p className="font-semibold text-white md:text-lg text-[8px] bg-red-600 p-1 rounded-lg inline">
+                    SENIN, 03 JAN 2023
+                  </p>
+                  <p className="lg:text-4xl text-sm md:text-3xl md:my-2 font-bold ">
+                    <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
+                  </p>
+                  <p className="text-[8px] md:text-lg font-medium">
+                    Super Admin
+                  </p>
+                </div>
+              </div>
+              <div className="bg-white text-black">
+                <div>
+                  <img src={Image} className="w-full" alt="" />
+                </div>
+                <div className="p-2 md:pt-5">
+                  <p className="font-semibold text-white md:text-lg text-[8px] bg-red-600 p-1 rounded-lg inline">
+                    SENIN, 03 JAN 2023
+                  </p>
+                  <p className="lg:text-4xl text-sm md:text-3xl md:my-2 font-bold ">
+                    <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
+                  </p>
+                  <p className="text-[8px] md:text-lg font-medium">
+                    Super Admin
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="p-3  pt-5">
-            <p className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg inline">
-              SENIN, 03 JAN 2023
-            </p>
-            <p className="text-3xl font-bold my-4">
-              <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
-            </p>
-            <p className="text-lg font-medium">Super Admin</p>
-          </div>
-        </div>
-        <div className="bg-white text-black">
-          <div>
-            <img src={Image} className="w-full" alt="" />
-          </div>
-          <div className="p-3  pt-5">
-            <p className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg inline">
-              SENIN, 03 JAN 2023
-            </p>
-            <p className="text-3xl font-bold my-4">
-              <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
-            </p>
-            <p className="text-lg font-medium">Super Admin</p>
-          </div>
-        </div>
-        <div className="bg-white text-black">
-          <div>
-            <img src={Image} className="w-full" alt="" />
-          </div>
-          <div className="p-3  pt-5">
-            <p className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg inline">
-              SENIN, 03 JAN 2023
-            </p>
-            <p className="text-3xl font-bold my-4">
-              <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
-            </p>
-            <p className="text-lg font-medium">Super Admin</p>
-          </div>
-        </div>
-        <div className="bg-white text-black">
-          <div>
-            <img src={Image} className="w-full" alt="" />
-          </div>
-          <div className="p-3  pt-5">
-            <p className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg inline">
-              SENIN, 03 JAN 2023
-            </p>
-            <p className="text-3xl font-bold my-4">
-              <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
-            </p>
-            <p className="text-lg font-medium">Super Admin</p>
+
+          {/* display desktop */}
+          <div className="bg-white hidden lg:block text-black col-span-3 lg:col-span-1 lg:h-[470px]">
+            <div>
+              <img src={Image} className="w-full" alt="" />
+            </div>
+            <div className="p-3  pt-5">
+              <p className="font-semibold text-white text-lg bg-red-600 p-2 rounded-lg inline">
+                SENIN, 03 JAN 2023
+              </p>
+              <p className="lg:text-4xl text-3xl font-bold my-3">
+                <a href="#">KPU TETAPKAN 3 MENTOR TERBAIK</a>
+              </p>
+              <p className="text-lg font-medium">Super Admin</p>
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
