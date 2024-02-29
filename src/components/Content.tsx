@@ -2,8 +2,8 @@ import Image from "../assets/img/image.png";
 
 export default function Content() {
   return (
-    <section className="py-16">
-      <div className="container mx-auto">
+    <section className="pt-16">
+      <div className="container mx-auto mb-16">
         <div className="w-full px-4 grid grid-cols-3 gap-4">
           <div className="relative  col-span-3 lg:col-span-2 lg:h-[470px]">
             <img
@@ -75,6 +75,14 @@ export default function Content() {
               <p className="text-lg font-medium">Super Admin</p>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="bg-white">
+        <div className="container mx-auto">
+          <p className="text-center md:text-3xl lg:text-5xl p-4 md:p-10 lg:p-16 font-bold ">
+            PILIHLAH CALON PRESIDEN MENTOR DARI REKAM JEJAK YANG JELAS PASTIKAN
+            MEREKA TIDAK MEMILIKI VISI MISI UNTUK MELEGALKAN SLOT
+          </p>
         </div>
       </div>
     </section>

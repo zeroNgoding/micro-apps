@@ -1,19 +1,41 @@
-import { MouseEvent, useState } from "react";
+import React, { useState } from "react";
 import Logo from "../assets/img/logoDW.png";
 import HL from "../assets/img/hl.png";
+import HamburgerLineMobile from "./HamburgerLineMobile";
+import ModalLogin from "./ModalLogin";
+import ModalRegister from "./ModalRegister";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Navbar() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export default function Navbar(props: any) {
+  const navigate = useNavigate();
+  const [HamburgerLin, setHamburgerLin] = useState<boolean>(false);
+  const [modalLogin, setModalLogin] = useState<boolean>(false);
+  const [modalRegister, setModalRegister] = useState<boolean>(false);
+  const [dropdownLogout, setDropdownLogout] = useState<boolean>(false);
 
   return (
     <header className="bg-black fixed top-0 left-0 w-full flex items-center z-10 ">
+      {modalLogin && (
+        <ModalLogin
+          userSignIn={props.userSignIn}
+          setUserSignIn={props.setUserSignIn}
+          modalLogin={modalLogin}
+          setModalLogin={setModalLogin}
+          setModalRegister={setModalRegister}
+        />
+      )}
+      {modalRegister && (
+        <ModalRegister
+          setModalLogin={setModalLogin}
+          setModalRegister={setModalRegister}
+        />
+      )}
       <div className="container mx-auto">
         <div className="flex items-center justify-between relative px-4 py-2">
           <div className="flex items-center gap-4">
-            <a href="#">
+            <Link to="/">
               <img src={Logo} alt="" />
-            </a>
+            </Link>
             <p className="font-bold text-sm lg:text-lg text-white">
               PEMILU PRESIDEN DUMBWAYS.ID
             </p>
@@ -21,21 +43,63 @@ export default function Navbar() {
           <div className="flex items-center ">
             <ul className="hidden lg:flex text-white gap-4 font-semibold">
               <li>
-                <a href="">Partai</a>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => {
+                    if (props.userSignIn.isLogin === false) {
+                      return setModalLogin(true);
+                    }
+                    return navigate("/list-partai");
+                  }}
+                >
+                  Partai
+                </p>
               </li>
               <li>|</li>
               <li>
-                <a href="">Paslon</a>
+                <p
+                  className="cursor-pointer"
+                  onClick={() => {
+                    if (props.userSignIn.isLogin === false) {
+                      return setModalLogin(true);
+                    }
+                    return navigate("/list-paslon");
+                  }}
+                >
+                  Paslon
+                </p>
               </li>
               <li>|</li>
-              <li>
-                <a href="">Voting</a>
+              <li
+                className={
+                  props.userSignIn.listas === "admin"
+                    ? "cursor-pointer hidden"
+                    : "cursor-pointer"
+                }
+              >
+                <p
+                  className="cursor-pointer"
+                  onClick={() => {
+                    if (props.userSignIn.isLogin === false) {
+                      return setModalLogin(true);
+                    }
+                    return navigate("/voting");
+                  }}
+                >
+                  Voting
+                </p>
               </li>
               <li>
-                {isLogin ? (
+                {props.userSignIn.isLogin ? (
                   <>
+                    {dropdownLogout && (
+                      <div className="absolute top-16 right-[-8px] rounded-lg shadow-md bg-black p-2">
+                        <p>Logout</p>
+                      </div>
+                    )}
+
                     <button
-                      onClick={(): void => setIsLogin(!isLogin)}
+                      onClick={() => setDropdownLogout(!dropdownLogout)}
                       className="bg-white text-black rounded-full px-2 py-1"
                     >
                       D
@@ -44,7 +108,7 @@ export default function Navbar() {
                 ) : (
                   <>
                     <button
-                      onClick={(): void => setIsLogin(!isLogin)}
+                      onClick={() => setModalLogin(!modalLogin)}
                       className="bg-white text-black rounded px-4 ms-5 py-1"
                     >
                       Login
@@ -54,73 +118,27 @@ export default function Navbar() {
               </li>
             </ul>
             <button className="flex items-center absolute right-4 lg:hidden">
-              {isLogin ? (
+              {props.userSignIn.isLogin ? (
                 <button
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => setHamburgerLin(!HamburgerLin)}
                   className="bg-white text-black rounded-full px-2 py-1"
                 >
                   D
                 </button>
               ) : (
                 <img
-                  onClick={() => setIsOpen(!isOpen)}
+                  onClick={() => setHamburgerLin(!HamburgerLin)}
                   className="w-[30px] hover:opacity-80"
                   src={HL}
                   alt=""
                 />
               )}
             </button>
-            {isOpen && (
-              <nav className="bg-white absolute p-5 rounded-lg shadow-lg max-w-[180px] w-full right-4 top-12">
-                <ul className="block">
-                  <li className="group">
-                    <a
-                      className="text-base font-semibold text-dark py-2 justify-center flex hover:text-red-600"
-                      href="#"
-                    >
-                      Partai
-                    </a>
-                  </li>
-                  <hr className="border-t-1 border-black" />
-                  <li className="group">
-                    <a
-                      className="text-base font-semibold text-dark py-2 justify-center flex hover:text-red-600"
-                      href="#"
-                    >
-                      Paslon
-                    </a>
-                  </li>
-                  <hr className="border-t-1 border-black" />
-                  <li className="group">
-                    <a
-                      className="text-base font-semibold text-dark py-2 justify-center flex hover:text-red-600"
-                      href="#"
-                    >
-                      Voting
-                    </a>
-                  </li>
-                  <hr className="border-t-1 border-black" />
-                  <li className="group">
-                    {isLogin ? (
-                      <a
-                        onClick={(): void => setIsLogin(!isLogin)}
-                        className="text-base font-semibold text-white bg-black hover:bg-red-600 py-2 rounded-lg justify-center flex  mt-2"
-                        href="#"
-                      >
-                        Logout
-                      </a>
-                    ) : (
-                      <a
-                        onClick={(): void => setIsLogin(!isLogin)}
-                        className="text-base font-semibold text-white bg-black hover:bg-red-600 py-2 rounded-lg justify-center flex  mt-2"
-                        href="#"
-                      >
-                        Login
-                      </a>
-                    )}
-                  </li>
-                </ul>
-              </nav>
+            {HamburgerLin && (
+              <HamburgerLineMobile
+                isLogin={props.userSignIn.isLogin}
+                setIsLogin={props.setUserSignIn}
+              />
             )}
           </div>
         </div>

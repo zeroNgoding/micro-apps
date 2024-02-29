@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section className="mt-24">
       <div
-        className="container mx-auto text-white leading-none rounded-[30px]"
+        className="container mx-auto text-white leading-none lg:rounded-[15px] md:rounded-[15px] "
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(117, 6, 6, 0.75) ,rgba(92, 30, 3, 1)",
@@ -38,29 +38,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-
-    // <div className="container relative mx-auto mt-32 text-white rounded-3xl">
-    //   <div
-    //     className="rounded-lg"
-    //     style={{
-    //       backgroundImage:
-    //         "linear-gradient(to right, rgba(117, 6, 6, 0.75) ,rgba(92, 30, 3, 1)",
-    //     }}
-    //   >
-    //     <img src={DW} className="w-80 opacity-25 p-0 m-0" alt="" />
-    //     <img
-    //       src={Kotak}
-    //       className="w-64  p-0 m-0 absolute top-0 end-20"
-    //       alt=""
-    //     />
-    //     <div className="flex p-0 m-0 flex-col font-bold pb-8 mt-20 p-5">
-    //       <p className="text-6xl">SELAMAT DATANG</p>
-    //       <p className="text-xl leading-none">
-    //         PEMILU PRESIDEN DUMBWAYS.ID YANG JUJUR
-    //       </p>
-    //       <p className="text-xl leading-6">DIPILIH MELALUI SEBUAH ARTI NAMA</p>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
