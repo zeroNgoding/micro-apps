@@ -2,22 +2,26 @@ import Image from "../assets/img/image.png";
 import Arrow from "../assets/img/arrow.png";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
-export default function DetailPage() {
+export default function DetailPage(props: any) {
   return (
     <>
-      <Navbar />
+      <Navbar
+        userSignIn={props.userSignIn}
+        setUserSignIn={props.setUserSignIn}
+      />
       <section>
         <div className="container bg-white mt-14 mx-auto justify-center">
           <div className=" relative justify-center items-center">
             <h1 className="pt-5 pb-10 text-center">BERITA HARI INI</h1>
-            <a
-              href=""
+            <Link
+              to="/"
               className="absolute top-6 left-4  fixed-child flex items-center gap-1 md:gap-2 md:left-8 md:top-4"
             >
               <img className="w-2 h-2 md:w-3 md:h-3" src={Arrow} alt="" />
               <p className="text-xs md:text-sm lg:text-base">beranda</p>
-            </a>
+            </Link>
           </div>
           <div className="w-full items-center flex flex-col justify-center px-4 lg:px-12 md:px-8">
             <h1 className="font-bold text-sm md:text-2xl lg:text-4xl text-center">

@@ -12,6 +12,8 @@ export default function Navbar(props: any) {
   const [modalLogin, setModalLogin] = useState<boolean>(false);
   const [modalRegister, setModalRegister] = useState<boolean>(false);
   const [dropdownLogout, setDropdownLogout] = useState<boolean>(false);
+  const dataString: any = localStorage.getItem("UserSignIn");
+  const userLogin = JSON.parse(dataString);
 
   return (
     <header className="bg-black fixed top-0 left-0 w-full flex items-center z-10 ">
@@ -43,88 +45,70 @@ export default function Navbar(props: any) {
           <div className="flex items-center ">
             <ul className="hidden lg:flex text-white gap-4 font-semibold">
               <li>
-                <p
-                  className="cursor-pointer"
-                  onClick={() => {
-                    if (props.userSignIn.isLogin === false) {
-                      return setModalLogin(true);
-                    }
-                    return navigate("/list-partai");
-                  }}
-                >
+                <Link to="/list-partai" className="cursor-pointer">
                   Partai
-                </p>
+                </Link>
               </li>
               <li>|</li>
               <li>
-                <p
-                  className="cursor-pointer"
-                  onClick={() => {
-                    if (props.userSignIn.isLogin === false) {
-                      return setModalLogin(true);
-                    }
-                    return navigate("/list-paslon");
-                  }}
-                >
+                <Link to="/list-paslon" className="cursor-pointer">
                   Paslon
-                </p>
+                </Link>
               </li>
               <li>|</li>
               <li
                 className={
-                  props.userSignIn.listas === "admin"
+                  userLogin?.isLogin === "admin"
                     ? "cursor-pointer hidden"
                     : "cursor-pointer"
                 }
               >
-                <p
-                  className="cursor-pointer"
-                  onClick={() => {
-                    if (props.userSignIn.isLogin === false) {
-                      return setModalLogin(true);
-                    }
-                    return navigate("/voting");
-                  }}
-                >
+                <Link to="/voting" className="cursor-pointer">
                   Voting
-                </p>
+                </Link>
               </li>
-              <li>
-                {props.userSignIn.isLogin ? (
+              <li className="cursor-pointer">
+                {userLogin?.isLogin ? (
                   <>
                     {dropdownLogout && (
-                      <div className="absolute top-16 right-[-8px] rounded-lg shadow-md bg-black p-2">
+                      <div
+                        onClick={() => {
+                          localStorage.removeItem("UserSignIn");
+                          return navigate("/");
+                        }}
+                        className="absolute top-16 right-[-8px] rounded-lg shadow-md bg-black p-2 cursor-pointer"
+                      >
                         <p>Logout</p>
                       </div>
                     )}
 
-                    <button
+                    <p
                       onClick={() => setDropdownLogout(!dropdownLogout)}
                       className="bg-white text-black rounded-full px-2 py-1"
                     >
                       D
-                    </button>
+                    </p>
                   </>
                 ) : (
                   <>
-                    <button
+                    <p
                       onClick={() => setModalLogin(!modalLogin)}
                       className="bg-white text-black rounded px-4 ms-5 py-1"
                     >
                       Login
-                    </button>
+                    </p>
                   </>
                 )}
               </li>
             </ul>
-            <button className="flex items-center absolute right-4 lg:hidden">
-              {props.userSignIn.isLogin ? (
-                <button
+            <div className="flex items-center absolute right-4 lg:hidden cursor-pointer">
+              {userLogin?.isLogin ? (
+                <p
                   onClick={() => setHamburgerLin(!HamburgerLin)}
                   className="bg-white text-black rounded-full px-2 py-1"
                 >
                   D
-                </button>
+                </p>
               ) : (
                 <img
                   onClick={() => setHamburgerLin(!HamburgerLin)}
@@ -133,11 +117,11 @@ export default function Navbar(props: any) {
                   alt=""
                 />
               )}
-            </button>
+            </div>
             {HamburgerLin && (
               <HamburgerLineMobile
-                isLogin={props.userSignIn.isLogin}
-                setIsLogin={props.setUserSignIn}
+                isLogin={userLogin.isLogin}
+                setIsLogin={userLogin.isLogin}
               />
             )}
           </div>

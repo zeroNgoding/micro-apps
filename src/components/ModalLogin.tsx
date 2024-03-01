@@ -9,6 +9,8 @@ export default function ModalLogin(props: any) {
     props.setUserSignIn({
       ...props.userSignIn,
       [e.target.name]: e.target.value,
+      isLogin: true,
+      listas: dataUser.listas,
     });
   };
 
@@ -22,16 +24,14 @@ export default function ModalLogin(props: any) {
       e.preventDefault();
       props.setUserSignIn({
         ...props.userSignIn,
-        isLogin: true,
-        listas: dataUser.listas,
       });
-      // console.log(props.userSignIn.listas);
 
       if (dataUser.listas === "admin") {
         navigate("/admin");
       }
       localStorage.setItem("UserSignIn", JSON.stringify(props.userSignIn));
-      console.log(props.userSignIn);
+      console.log(props.userSignIn.listas);
+      // console.log();
       alert("login succses!");
       props.setModalLogin(false);
     } else {

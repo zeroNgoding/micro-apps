@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/react-slick": "^0.23.13",
-    "@types/slick-carousel": "^1.6.40",
+    "apexcharts": "^3.46.0",
+    "flowbite": "^2.3.0",
+    "flowbite-react": "^0.7.2",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1",
-    "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

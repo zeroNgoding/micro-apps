@@ -1,33 +1,20 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 import DetailPage from "./pages/DetailPage";
 import LandingPage from "./pages/LandingPage";
 import VotePage from "./pages/VotePage";
 import AdminPage from "./pages/AdminPage";
-import Onyet from "./assets/img/onyet.png";
 import ListPaslon from "./pages/ListPaslon";
 import ListPartai from "./pages/ListPartai";
 import AddPaslon from "./pages/AddPaslon";
 import AddPartai from "./pages/AddPartai";
-import Slider from "react-slick";
-import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, useNavigate, Outlet, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { IUserSignIn } from "./interface/Interface";
 
 function App() {
-  const navigate = useNavigate();
-  const [userSignIn, setUserSignin] = useState({
-    username: "",
-    password: "",
-    isLogin: false,
-    listas: "",
-  });
+  const [userSignIn, setUserSignin] = useState<IUserSignIn>();
 
   function PrivatRoute() {
-    if (userSignIn.listas === "admin") {
-      navigate("/admin");
-    }
-
-    return <Outlet />;
+    return userSignIn?.listas === "admin" ? <Outlet /> : <Navigate to="/" />;
   }
 
   return (
@@ -43,9 +30,15 @@ function App() {
           }
         />
         <Route
-          path="/admin"
+          path="/voting"
           element={
-            <AdminPage userSignIn={userSignIn} setUserSignIn={setUserSignin} />
+            <VotePage userSignIn={userSignIn} setUserSignIn={setUserSignin} />
+          }
+        />
+        <Route
+          path="/detail-page"
+          element={
+            <DetailPage userSignIn={userSignIn} setUserSignIn={setUserSignin} />
           }
         />
         <Route
@@ -54,30 +47,43 @@ function App() {
             <ListPartai userSignIn={userSignIn} setUserSignIn={setUserSignin} />
           }
         />
-        <Route
-          path="/voting"
-          element={
-            <VotePage userSignIn={userSignIn} setUserSignIn={setUserSignin} />
-          }
-        />
+
         <Route
           path="/list-paslon"
           element={
             <ListPaslon userSignIn={userSignIn} setUserSignIn={setUserSignin} />
           }
         />
+        <Route element={<PrivatRoute />}>
+          <Route
+            path="/admin"
+            element={
+              <AdminPage
+                userSignIn={userSignIn}
+                setUserSignIn={setUserSignin}
+              />
+            }
+          />
+          <Route
+            path="/add-partai"
+            element={
+              <AddPartai
+                userSignIn={userSignIn}
+                setUserSignIn={setUserSignin}
+              />
+            }
+          />
+          <Route
+            path="/add-paslon"
+            element={
+              <AddPaslon
+                userSignIn={userSignIn}
+                setUserSignIn={setUserSignin}
+              />
+            }
+          />
+        </Route>
       </Routes>
-
-      {/* <Navbar />
-      <LandingPage />
-      <DetailPage />
-      <VotePage />
-      <AdminPage />
-      <ListPaslon />
-      <ListPartai />
-      <AddPaslon />
-      <AddPartai />
-      <Footer /> */}
     </>
   );
 }

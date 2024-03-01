@@ -2,10 +2,13 @@ import Onyet from "../assets/img/onyet.png";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-export default function AddPaslon() {
+export default function AddPaslon(props: any) {
   return (
     <>
-      <Navbar />
+      <Navbar
+        userSignIn={props.userSignIn}
+        setUserSignIn={props.setUserSignIn}
+      />
       <section className=" bg-white h-screen pt-52">
         <div className="container mx-auto">
           <h1 className="text-center font-bold text-2xl lg:mb-10 lg:text-5xl">
